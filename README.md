@@ -1,5 +1,7 @@
 # Parallel Worlds
 
+[English](./README.md) | [中文说明](./README.zh-CN.md) | [中文贡献指南](./CONTRIBUTING.zh-CN.md) | [中文排障指南](./docs/troubleshooting.zh-CN.md)
+
 [![CI](https://github.com/kurtxu88/parallel-worlds/actions/workflows/ci.yml/badge.svg)](https://github.com/kurtxu88/parallel-worlds/actions/workflows/ci.yml)
 [![Release Drafter](https://github.com/kurtxu88/parallel-worlds/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/kurtxu88/parallel-worlds/actions/workflows/release-drafter.yml)
 [![Release](https://github.com/kurtxu88/parallel-worlds/actions/workflows/release.yml/badge.svg)](https://github.com/kurtxu88/parallel-worlds/actions/workflows/release.yml)
@@ -8,6 +10,15 @@
 ![Parallel Worlds social card](./apps/web/public/social-card.svg)
 
 Parallel Worlds is an open-source AI storytelling app for building playable worlds from short narrative seeds.
+
+> 中文贡献者也欢迎直接参与。
+> 快速入口：
+> [中文 README](./README.zh-CN.md) |
+> [中文贡献指南](./CONTRIBUTING.zh-CN.md) |
+> [中文排障指南](./docs/troubleshooting.zh-CN.md) |
+> [中文 Bug 模板](https://github.com/kurtxu88/parallel-worlds/issues/new?template=bug_report.zh-CN.yml) |
+> [中文功能建议模板](https://github.com/kurtxu88/parallel-worlds/issues/new?template=feature_request.zh-CN.yml) |
+> [中文世界展示模板](https://github.com/kurtxu88/parallel-worlds/issues/new?template=showcase.zh-CN.yml)
 
 Current release line: `v0.1.0`
 

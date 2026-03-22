@@ -1,11 +1,17 @@
 blank_issues_enabled: true
 contact_links:
+  - name: Chinese README / 中文说明
+    url: https://github.com/kurtxu88/parallel-worlds/blob/main/README.zh-CN.md
+    about: Start here if you want the project overview in Chinese.
   - name: Roadmap / 路线图
     url: https://github.com/kurtxu88/parallel-worlds/blob/main/docs/roadmap.md
     about: Check the current product direction before proposing large scope changes. 提大方向改动前先看这里。
   - name: Chinese Contributing Guide / 中文贡献指南
     url: https://github.com/kurtxu88/parallel-worlds/blob/main/CONTRIBUTING.zh-CN.md
     about: Read this first if you want to contribute in Chinese.
+  - name: Chinese Troubleshooting / 中文排障指南
+    url: https://github.com/kurtxu88/parallel-worlds/blob/main/docs/troubleshooting.zh-CN.md
+    about: Check this if you are blocked by local setup, Docker, or runtime issues.
   - name: Growth Playbook / 增长手册
     url: https://github.com/kurtxu88/parallel-worlds/blob/main/docs/growth-playbook.md
     about: See how we think about demoability, adoption, and community growth. 了解项目如何做增长与传播。

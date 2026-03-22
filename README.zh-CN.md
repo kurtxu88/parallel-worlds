@@ -1,5 +1,7 @@
 # Parallel Worlds
 
+[中文说明](./README.zh-CN.md) | [English README](./README.md) | [中文贡献指南](./CONTRIBUTING.zh-CN.md) | [中文排障指南](./docs/troubleshooting.zh-CN.md)
+
 [![CI](https://github.com/kurtxu88/parallel-worlds/actions/workflows/ci.yml/badge.svg)](https://github.com/kurtxu88/parallel-worlds/actions/workflows/ci.yml)
 [![Release Drafter](https://github.com/kurtxu88/parallel-worlds/actions/workflows/release-drafter.yml/badge.svg)](https://github.com/kurtxu88/parallel-worlds/actions/workflows/release-drafter.yml)
 [![Release](https://github.com/kurtxu88/parallel-worlds/actions/workflows/release.yml/badge.svg)](https://github.com/kurtxu88/parallel-worlds/actions/workflows/release.yml)
