@@ -29,3 +29,9 @@ export DATABASE_URL=postgresql://parallel_worlds:parallel_worlds@localhost:5432/
 export NEO4J_URI=bolt://localhost:7687
 uvicorn main:app --reload
 ```
+
+## 测试
+
+```bash
+python3 -m unittest discover tests
+```

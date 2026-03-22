@@ -204,6 +204,7 @@ parallel-worlds/
 - [Growth Playbook](./docs/growth-playbook.md)
 - [Demo Script](./docs/demo-script.md)
 - [Launch Checklist](./docs/launch-checklist.md)
+- [Troubleshooting](./docs/troubleshooting.md)
 - [Release Process](./docs/release-process.md)
 - [Chinese README](./README.zh-CN.md)
 - [Contributing](./CONTRIBUTING.md)

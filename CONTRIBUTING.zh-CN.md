@@ -6,6 +6,7 @@
 
 - 先读 [README.zh-CN.md](./README.zh-CN.md)
 - 再读 [docs/roadmap.zh-CN.md](./docs/roadmap.zh-CN.md)
+- 如果你要处理本地启动、Docker 或运行时报错，也建议先读 [docs/troubleshooting.zh-CN.md](./docs/troubleshooting.zh-CN.md)
 - 如果你的改动目标是增长、传播、演示效果或社区参与，也请读 [docs/growth-playbook.zh-CN.md](./docs/growth-playbook.zh-CN.md)
 - 请只基于这个开源仓库里的技术栈做改动
 - 请不要把托管认证、Supabase 默认依赖或私有 SaaS 流程重新带回 v1
@@ -47,6 +48,7 @@
 
 ```bash
 cd apps/web && npm install && npm run build && npm run test
+python3 -m unittest discover apps/api/tests
 python3 -m compileall apps/api workers/story-generator
 ```
 
@@ -76,3 +78,4 @@ python3 -m compileall apps/api workers/story-generator
 - 中文 Bug 模板：https://github.com/kurtxu88/parallel-worlds/issues/new?template=bug_report.zh-CN.yml
 - 中文功能建议模板：https://github.com/kurtxu88/parallel-worlds/issues/new?template=feature_request.zh-CN.yml
 - 中文世界展示模板：https://github.com/kurtxu88/parallel-worlds/issues/new?template=showcase.zh-CN.yml
+- [中文排障指南](./docs/troubleshooting.zh-CN.md)

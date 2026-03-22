@@ -204,6 +204,7 @@ parallel-worlds/
 - [增长 Playbook](./docs/growth-playbook.zh-CN.md)
 - [Demo 脚本](./docs/demo-script.zh-CN.md)
 - [发布清单](./docs/launch-checklist.zh-CN.md)
+- [排障指南](./docs/troubleshooting.zh-CN.md)
 - [发布流程](./docs/release-process.zh-CN.md)
 - [英文 README](./README.md)
 - [中文贡献指南](./CONTRIBUTING.zh-CN.md)
