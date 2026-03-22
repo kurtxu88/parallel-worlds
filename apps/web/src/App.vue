@@ -18,6 +18,7 @@ const showWorldBuilding = ref(true)
 const translations = {
   'en-US': {
     home: 'Home',
+    discover: 'Discover',
     worlds: 'Worlds',
     create: 'Create',
     settings: 'Settings',
@@ -25,6 +26,7 @@ const translations = {
   },
   'zh-CN': {
     home: '首页',
+    discover: '发现',
     worlds: '世界列表',
     create: '创建',
     settings: '设置',
@@ -154,6 +156,7 @@ const handleThemeChange = (theme: AppTheme) => {
       <div v-if="showMenu" class="menu-overlay" @click.self="showMenu = false">
         <div class="menu-panel">
           <router-link class="menu-link" :to="{ name: 'landing' }">{{ t('home') }}</router-link>
+          <router-link class="menu-link" :to="{ name: 'discover' }">{{ t('discover') }}</router-link>
           <router-link class="menu-link" :to="{ name: 'worlds' }">{{ t('worlds') }}</router-link>
           <router-link class="menu-link" :to="{ name: 'create' }">{{ t('create') }}</router-link>
           <router-link class="menu-link" :to="{ name: 'settings' }">{{ t('settings') }}</router-link>

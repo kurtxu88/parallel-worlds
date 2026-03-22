@@ -18,6 +18,7 @@ We are focusing on four qualities:
 These are the highest-priority improvements for the next public releases:
 
 - make first-run onboarding smoother with starter seeds, clearer docs, and faster local setup
+- refine the new public discovery layer so shared worlds become a stronger demo surface
 - improve observability around generation failures and retry flows
 - add more test coverage for the API and worker core loop
 - publish better demo assets so the project is easier to understand at a glance
@@ -26,7 +27,7 @@ These are the highest-priority improvements for the next public releases:
 
 Once the core loop feels solid, the next milestone is shareability:
 
-- public browsing and discovery on top of share pages
+- ranking, filtering, and curation on top of public discovery
 - export and import for generated worlds
 - richer example seeds and canonical demo scenarios
 - better world metadata, titles, and summaries for browsing

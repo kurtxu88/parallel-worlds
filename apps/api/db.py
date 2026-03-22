@@ -472,6 +472,55 @@ def get_public_story(story_id: str) -> dict[str, Any] | None:
     return story
 
 
+def list_public_stories(limit: int = 24) -> list[dict[str, Any]]:
+    ensure_story_schema()
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT s.id,
+                       s.story_id,
+                       s.story_title,
+                       s.user_input,
+                       s.gender_preference,
+                       s.culture_language,
+                       s.is_public,
+                       s.status,
+                       s.error_message,
+                       s.created_at,
+                       s.updated_at,
+                       event_stats.last_entered_at,
+                       COALESCE(event_stats.event_count, 0) AS event_count,
+                       preview.preview_excerpt
+                FROM stories s
+                LEFT JOIN LATERAL (
+                    SELECT MAX(e.created_at) AS last_entered_at,
+                           COUNT(*) AS event_count
+                    FROM story_events e
+                    WHERE e.story_id = s.id
+                ) event_stats
+                  ON TRUE
+                LEFT JOIN LATERAL (
+                    SELECT e.content AS preview_excerpt
+                    FROM story_events e
+                    WHERE e.story_id = s.id
+                      AND e.event_type = 'ai_response'
+                    ORDER BY e.created_at DESC
+                    LIMIT 1
+                ) preview
+                  ON TRUE
+                WHERE s.is_public = TRUE
+                ORDER BY COALESCE(event_stats.last_entered_at, s.updated_at) DESC,
+                         s.created_at DESC
+                LIMIT %s
+                """,
+                (limit,),
+            )
+            stories = cur.fetchall()
+        conn.commit()
+    return stories
+
+
 def list_public_story_events(story_id: str) -> list[dict[str, Any]]:
     ensure_story_schema()
     with get_connection() as conn:

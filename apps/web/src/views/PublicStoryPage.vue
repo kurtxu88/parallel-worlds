@@ -26,6 +26,9 @@
           <router-link v-if="story" class="primary-link" :to="getStoryRemixPath(story)">
             {{ t('remixAction') }}
           </router-link>
+          <router-link class="secondary-link" :to="getPublicDiscoveryPath()">
+            {{ t('discoverAction') }}
+          </router-link>
           <router-link class="secondary-link" :to="{ name: 'landing' }">
             {{ t('homeAction') }}
           </router-link>
@@ -82,7 +85,7 @@
 import { computed, onMounted, ref } from 'vue'
 import type { AppLanguage, PublicStoryEvent, PublicStoryRecord } from '../lib/api'
 import { getPublicStory, getPublicStoryEvents } from '../lib/api'
-import { getStoryRemixPath } from '../lib/storyLinks'
+import { getPublicDiscoveryPath, getStoryRemixPath } from '../lib/storyLinks'
 import { usePageSeo } from '../lib/usePageSeo'
 
 const props = defineProps<{
@@ -104,6 +107,7 @@ const translations = {
     eyebrow: 'Public world',
     subtitle: 'A shared Parallel Worlds session you can read, remix, and explore.',
     remixAction: 'Remix this world',
+    discoverAction: 'Browse public worlds',
     homeAction: 'Project home',
     loading: 'Loading the public world...',
     status: 'Status',
@@ -125,6 +129,7 @@ const translations = {
     eyebrow: '公开世界',
     subtitle: '这是一个可阅读、可二次创作、可继续探索的 Parallel Worlds 分享页面。',
     remixAction: '基于它重新创作',
+    discoverAction: '浏览公开世界',
     homeAction: '返回项目首页',
     loading: '正在加载公开世界...',
     status: '当前状态',

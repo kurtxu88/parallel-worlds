@@ -22,6 +22,7 @@ npm run test
 
 ## 主要路由
 
+- `/discover`
 - `/create`
 - `/worlds`
 - `/world/:id`

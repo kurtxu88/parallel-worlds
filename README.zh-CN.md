@@ -111,6 +111,7 @@ docker compose up --build
 
 也可以直接分享带预填种子的链接，比如 `/create?seed=drowned-moon`。
 如果在创建时开启分享，还可以把世界发布到 `/share/<story-id>`。
+已经公开的世界也会出现在 `/discover` 公开发现页中，方便别人连续浏览。
 
 ## 访客模式
 
@@ -122,7 +123,7 @@ docker compose up --build
 - 没有邀请码系统
 
 前端会先请求 `POST /api/session/guest`，把返回的 `guest_user_id` 保存到本地，再通过 `X-User-Id` 请求头访问业务 API。
-公开世界页是按故事单独开启的可选能力，不会默认公开所有内容。
+公开世界页是按故事单独开启的可选能力，不会默认公开所有内容；已公开的世界也可以通过 `/discover` 被浏览。
 
 ## 环境变量
 

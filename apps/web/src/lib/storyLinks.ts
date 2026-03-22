@@ -3,6 +3,10 @@ import { resolvePublicUrl } from './site'
 
 type RemixSource = Pick<StoryRecord, 'user_input' | 'gender_preference'>
 
+export function getPublicDiscoveryPath() {
+  return '/discover'
+}
+
 export function getPublicStoryPath(storyId: string) {
   return `/share/${storyId}`
 }

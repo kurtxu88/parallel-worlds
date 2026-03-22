@@ -10,6 +10,7 @@
 - `GET /api/stories/{id}`
 - `POST /api/stories/{id}/retry`
 - `PATCH /api/stories/{id}/visibility`
+- `GET /api/public/stories`
 - `GET /api/stories/{id}/events`
 - `GET /api/public/stories/{id}`
 - `GET /api/public/stories/{id}/events`

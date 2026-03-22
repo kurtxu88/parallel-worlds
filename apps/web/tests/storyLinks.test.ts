@@ -1,7 +1,15 @@
 import { describe, expect, it } from 'vitest'
-import { getPublicStoryPath, getStoryRemixPath } from '../src/lib/storyLinks'
+import {
+  getPublicDiscoveryPath,
+  getPublicStoryPath,
+  getStoryRemixPath
+} from '../src/lib/storyLinks'
 
 describe('storyLinks', () => {
+  it('builds the public discovery path', () => {
+    expect(getPublicDiscoveryPath()).toBe('/discover')
+  })
+
   it('builds a public share path', () => {
     expect(getPublicStoryPath('story-123')).toBe('/share/story-123')
   })

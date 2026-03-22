@@ -6,6 +6,12 @@ The goal is not exhaustive internal detail. The goal is to help contributors and
 
 ## Unreleased
 
+### Added
+
+- public discovery feed on `/discover` for browsing shared worlds
+- public API listing endpoint at `GET /api/public/stories`
+- maintainer continuity docs, repo CODEOWNERS, and Dependabot config
+
 ## v0.1.0 - 2026-03-22
 
 ### Added

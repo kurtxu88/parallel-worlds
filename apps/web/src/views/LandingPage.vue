@@ -9,8 +9,11 @@
           <router-link class="primary-link" :to="{ name: 'create' }">
             {{ t('startCreating') }}
           </router-link>
+          <router-link class="secondary-link" :to="{ name: 'discover' }">
+            {{ t('discoverWorlds') }}
+          </router-link>
           <router-link class="secondary-link" :to="{ name: 'worlds' }">
-            {{ t('browseWorlds') }}
+            {{ t('browseMine') }}
           </router-link>
         </div>
       </div>
@@ -21,6 +24,7 @@
           <li>{{ t('feature1') }}</li>
           <li>{{ t('feature2') }}</li>
           <li>{{ t('feature3') }}</li>
+          <li>{{ t('feature4') }}</li>
         </ul>
         <div class="language-row">
           <button
@@ -79,11 +83,13 @@ const translations = {
     title: 'Build worlds. Enter them. Change them from inside.',
     subtitle: 'Parallel Worlds is a Vue + FastAPI app for generating graph-backed interactive story worlds with Neo4j and Postgres.',
     startCreating: 'Create a world',
-    browseWorlds: 'Open my worlds',
+    discoverWorlds: 'Discover public worlds',
+    browseMine: 'Open my worlds',
     panelLabel: 'Open-source release v1',
     feature1: 'Guest mode, no hosted auth',
     feature2: 'Async world generation worker',
     feature3: 'Streaming play sessions with history restore',
+    feature4: 'Public discovery feed for shared worlds',
     step1Title: 'Seed the premise',
     step1Body: 'Describe your character, tension, and setting in a few lines. The backend turns that seed into a world graph.',
     step2Title: 'Wait for generation',
@@ -96,11 +102,13 @@ const translations = {
     title: '构建世界，进入世界，并从世界内部改变它。',
     subtitle: 'Parallel Worlds 是一个基于 Vue + FastAPI 的开源项目，使用 Neo4j 和 Postgres 生成并游玩图结构互动故事世界。',
     startCreating: '创建世界',
-    browseWorlds: '打开我的世界',
+    discoverWorlds: '浏览公开世界',
+    browseMine: '打开我的世界',
     panelLabel: '开源首发版 v1',
     feature1: '访客模式，无托管认证',
     feature2: '异步世界生成 worker',
     feature3: '支持历史恢复的流式游玩会话',
+    feature4: '面向分享世界的公开发现页',
     step1Title: '播下设定种子',
     step1Body: '用几句话描述角色、冲突和场景，后端会把它扩展成一个完整的世界图谱。',
     step2Title: '等待生成完成',

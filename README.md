@@ -111,6 +111,7 @@ Use this example to get a fast first run:
 
 You can also deep-link directly into a starter seed page such as `/create?seed=drowned-moon`.
 If you enable sharing while creating a world, you can also publish it at `/share/<story-id>`.
+Published worlds can also be browsed from the public discovery feed at `/discover`.
 
 ## Guest Mode
 
@@ -122,7 +123,7 @@ The open-source release uses guest mode by default.
 - No invitation system
 
 The frontend requests `POST /api/session/guest` once, stores the returned `guest_user_id` locally, and sends it back through `X-User-Id`.
-Public world pages are optional and opt-in per story.
+Public world pages are optional and opt-in per story, and shared worlds can be browsed through `/discover`.
 
 ## Environment Variables
 

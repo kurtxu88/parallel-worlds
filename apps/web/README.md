@@ -22,6 +22,7 @@ The open-source web app does not connect directly to Supabase, Postgres, or Neo4
 
 Notable routes:
 
+- `/discover`
 - `/create`
 - `/worlds`
 - `/world/:id`

@@ -49,6 +49,23 @@ export interface PublicStoryRecord {
   last_entered_at?: string | null
 }
 
+export interface PublicStorySummary {
+  id: string
+  story_id: string
+  story_title: string | null
+  user_input: string
+  gender_preference: 'male' | 'female'
+  culture_language: AppLanguage
+  is_public: boolean
+  status: 'pending' | 'generating' | 'completed' | 'failed' | 'error'
+  error_message: string | null
+  created_at: string
+  updated_at: string
+  last_entered_at?: string | null
+  event_count: number
+  preview_excerpt: string | null
+}
+
 export interface PublicStoryEvent {
   id: string
   story_id: string
@@ -183,6 +200,10 @@ export function updateStoryVisibility(userId: string, storyId: string, isPublic:
 
 export function getPublicStory(storyId: string) {
   return apiFetch<PublicStoryRecord>(`/api/public/stories/${storyId}`)
+}
+
+export function getPublicStories(limit = 24) {
+  return apiFetch<PublicStorySummary[]>(`/api/public/stories?limit=${limit}`)
 }
 
 export function getPublicStoryEvents(storyId: string) {

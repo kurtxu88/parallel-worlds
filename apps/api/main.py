@@ -1,7 +1,7 @@
 from datetime import datetime, timezone
 from typing import Optional
 
-from fastapi import FastAPI, Header, HTTPException, Request
+from fastapi import FastAPI, Header, HTTPException, Query, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
@@ -12,6 +12,7 @@ from db import (
     get_public_story,
     get_or_create_settings,
     get_story,
+    list_public_stories,
     list_public_story_events,
     list_stories,
     list_story_events,
@@ -173,6 +174,11 @@ async def read_public_story(story_id: str):
     if not story:
         raise HTTPException(status_code=404, detail="Public story not found")
     return story
+
+
+@app.get("/api/public/stories")
+async def read_public_stories(limit: int = Query(default=24, ge=1, le=60)):
+    return list_public_stories(limit)
 
 
 @app.get("/api/public/stories/{story_id}/events")
