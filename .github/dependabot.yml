@@ -1,0 +1,33 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /apps/web
+    schedule:
+      interval: weekly
+    labels:
+      - chore
+      - dependencies
+
+  - package-ecosystem: pip
+    directory: /apps/api
+    schedule:
+      interval: weekly
+    labels:
+      - chore
+      - dependencies
+
+  - package-ecosystem: pip
+    directory: /workers/story-generator
+    schedule:
+      interval: weekly
+    labels:
+      - chore
+      - dependencies
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - ci
+      - dependencies

@@ -220,5 +220,6 @@ Small, focused improvements are the best fit right now.
 - UI clarity during story creation and recovery
 
 Use the repo templates to open a [bug report](https://github.com/kurtxu88/parallel-worlds/issues/new?template=bug_report.yml), [feature request](https://github.com/kurtxu88/parallel-worlds/issues/new?template=feature_request.yml), or [world showcase](https://github.com/kurtxu88/parallel-worlds/issues/new?template=showcase.yml).
+You can also browse [good first issues](https://github.com/kurtxu88/parallel-worlds/labels/good%20first%20issue), [help wanted tasks](https://github.com/kurtxu88/parallel-worlds/labels/help%20wanted), and [showcase posts](https://github.com/kurtxu88/parallel-worlds/labels/showcase).
 
 If this direction is useful to you, starring the repo helps more people discover it.

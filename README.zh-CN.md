@@ -222,5 +222,6 @@ parallel-worlds/
 可以直接用仓库模板发起 [Bug 报告](https://github.com/kurtxu88/parallel-worlds/issues/new?template=bug_report.yml)、[功能建议](https://github.com/kurtxu88/parallel-worlds/issues/new?template=feature_request.yml) 或 [世界展示](https://github.com/kurtxu88/parallel-worlds/issues/new?template=showcase.yml)。
 
 如果你希望全程用中文，也可以直接使用 [中文 Bug 模板](https://github.com/kurtxu88/parallel-worlds/issues/new?template=bug_report.zh-CN.yml)、[中文功能建议模板](https://github.com/kurtxu88/parallel-worlds/issues/new?template=feature_request.zh-CN.yml) 和 [中文世界展示模板](https://github.com/kurtxu88/parallel-worlds/issues/new?template=showcase.zh-CN.yml)。
+也可以直接查看 [适合新人的任务](https://github.com/kurtxu88/parallel-worlds/labels/good%20first%20issue)、[需要帮助的任务](https://github.com/kurtxu88/parallel-worlds/labels/help%20wanted) 和 [世界展示贴](https://github.com/kurtxu88/parallel-worlds/labels/showcase)。
 
 如果你认同这个方向，给仓库点一个 star 会很有帮助，它能让更多人发现这个项目。
