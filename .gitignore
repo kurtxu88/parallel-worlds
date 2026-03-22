@@ -1,0 +1,14 @@
+.DS_Store
+.env
+.env.local
+*.log
+__pycache__/
+*.pyc
+node_modules/
+dist/
+.vite/
+.pytest_cache/
+.mypy_cache/
+.venv/
+generated_games/
+coverage/

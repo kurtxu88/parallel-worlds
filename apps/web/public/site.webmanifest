@@ -1,0 +1,21 @@
+{
+  "name": "Parallel Worlds - Interactive AI Storytelling",
+  "short_name": "Parallel Worlds",
+  "description": "Create and explore infinite interactive stories with AI",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["entertainment", "games", "books"],
+  "lang": "en-US",
+  "dir": "ltr"
+} 
