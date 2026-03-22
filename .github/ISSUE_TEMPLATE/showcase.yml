@@ -31,4 +31,3 @@ body:
       label: Can others reproduce it?
       description: Share the seed, branch, commit, or steps if possible.
       placeholder: Seed used, setup notes, or any custom code changes.
-

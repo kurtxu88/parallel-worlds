@@ -52,4 +52,3 @@ body:
       label: 日志或截图
       description: 如果有相关日志、报错、traceback 或截图，请贴在这里。
       render: shell
-

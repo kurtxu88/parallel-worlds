@@ -33,4 +33,3 @@ body:
       label: 作用域与取舍
       description: 说明你已经想到的限制、替代方案或潜在问题。
       placeholder: 这个能力应该保持兼容 guest mode，不应依赖托管认证。
-

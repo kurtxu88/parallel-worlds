@@ -31,4 +31,3 @@ body:
       label: 别人能复现吗？
       description: 如果可以，请提供种子、分支、commit 或步骤。
       placeholder: 使用的 seed、环境说明，或任何自定义代码改动。
-
