@@ -53,7 +53,8 @@ workflow 会自动：
 3. 对 Python 代码做 compile 检查
 4. 构建 release 压缩包
 5. 上传产物
-6. 发布 GitHub Release
+6. 从 `CHANGELOG.md` 里提取对应版本的 release notes
+7. 发布 GitHub Release
 
 ## 推荐发布步骤
 

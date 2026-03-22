@@ -53,7 +53,8 @@ The workflow will:
 3. compile-check the Python code
 4. build release archives
 5. upload artifacts
-6. publish a GitHub Release
+6. extract the matching release notes from `CHANGELOG.md`
+7. publish a GitHub Release
 
 ## Recommended Release Steps
 

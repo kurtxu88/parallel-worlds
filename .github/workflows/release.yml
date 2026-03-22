@@ -60,6 +60,12 @@ jobs:
       - name: Build release assets
         run: bash scripts/package-release.sh "${{ steps.version.outputs.version }}"
 
+      - name: Extract release notes
+        run: |
+          python3 scripts/extract-release-notes.py \
+            "${{ steps.version.outputs.version }}" \
+            "out/release/${{ steps.version.outputs.version }}/release-notes.md"
+
       - name: Upload release artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -71,7 +77,7 @@ jobs:
         with:
           tag_name: v${{ steps.version.outputs.version }}
           name: v${{ steps.version.outputs.version }}
-          body_path: CHANGELOG.md
+          body_path: out/release/${{ steps.version.outputs.version }}/release-notes.md
           files: |
             out/release/${{ steps.version.outputs.version }}/parallel-worlds-src-v${{ steps.version.outputs.version }}.tar.gz
             out/release/${{ steps.version.outputs.version }}/parallel-worlds-web-dist-v${{ steps.version.outputs.version }}.zip
