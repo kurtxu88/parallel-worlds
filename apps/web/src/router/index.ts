@@ -18,6 +18,12 @@ const routes: RouteRecordRaw[] = [
     component: () => import('../components/StoryCreator.vue')
   },
   {
+    path: '/share/:id',
+    name: 'share',
+    component: () => import('../views/PublicStoryPage.vue'),
+    props: route => ({ storyId: route.params.id })
+  },
+  {
     path: '/world/:id',
     name: 'world',
     component: () => import('../components/StoryDetail.vue'),

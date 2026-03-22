@@ -62,8 +62,8 @@
           <h3>{{ props.currentLang === 'en-US' ? 'Choose your path to the next scene:' : '选择通往下一个场景的路径：' }}</h3>
           <p class="skip-choice-note">
             {{ props.currentLang === 'en-US' 
-              ? 'Premium subscribers can input custom actions • Upgrade to unlock' 
-              : '付费高级用户可输入自定义动作 • 升级解锁' }}
+              ? 'Choose one of the generated transitions to move the story forward.'
+              : '选择一个已生成的过渡行动，让故事继续向前推进。' }}
           </p>
           <div class="skip-choices">
             <template v-for="(choice, index) in gameState?.available_choices" :key="index">
@@ -97,12 +97,26 @@ import {
   type AppLanguage
 } from '../lib/api'
 import { ensureGuestUser } from '../lib/guestSession'
+import { usePageSeo } from '../lib/usePageSeo'
 
 // Props to receive the selected story
 const props = defineProps<{
   originalStoryId: string
   currentLang: AppLanguage
 }>()
+
+usePageSeo({
+  title:
+    props.currentLang === 'en-US'
+      ? 'World Session | Parallel Worlds'
+      : '世界会话 | Parallel Worlds',
+  description:
+    props.currentLang === 'en-US'
+      ? 'Play inside a generated world and restore the session from stored interaction history.'
+      : '进入一个已生成的世界，并从已保存的互动历史中恢复会话。',
+  path: `/world/${props.originalStoryId}`,
+  noindex: true
+})
 
 // Reactive state for user input
 const userInput = ref('')

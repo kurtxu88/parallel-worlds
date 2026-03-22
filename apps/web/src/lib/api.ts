@@ -13,6 +13,7 @@ export interface StoryRecord {
   user_input: string
   gender_preference: 'male' | 'female'
   culture_language: AppLanguage
+  is_public: boolean
   status: 'pending' | 'generating' | 'completed' | 'failed' | 'error'
   error_message: string | null
   created_at: string
@@ -33,6 +34,32 @@ export interface StoryEvent {
   created_at: string
 }
 
+export interface PublicStoryRecord {
+  id: string
+  story_id: string
+  story_title: string | null
+  user_input: string
+  gender_preference: 'male' | 'female'
+  culture_language: AppLanguage
+  is_public: boolean
+  status: 'pending' | 'generating' | 'completed' | 'failed' | 'error'
+  error_message: string | null
+  created_at: string
+  updated_at: string
+  last_entered_at?: string | null
+}
+
+export interface PublicStoryEvent {
+  id: string
+  story_id: string
+  scene_id?: string | null
+  episode_number?: number | null
+  round_number?: number | null
+  event_type: string
+  content: string
+  created_at: string
+}
+
 export interface UserSettings {
   user_id: string
   language: AppLanguage
@@ -45,6 +72,7 @@ export interface StoryCreatePayload {
   user_input: string
   gender_preference: 'male' | 'female'
   culture_language: AppLanguage
+  is_public: boolean
 }
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
@@ -140,4 +168,23 @@ export function retryStory(userId: string, storyId: string) {
 
 export function getStoryEvents(userId: string, storyId: string) {
   return apiFetch<StoryEvent[]>(`/api/stories/${storyId}/events`, {}, userId)
+}
+
+export function updateStoryVisibility(userId: string, storyId: string, isPublic: boolean) {
+  return apiFetch<StoryRecord>(
+    `/api/stories/${storyId}/visibility`,
+    {
+      method: 'PATCH',
+      body: JSON.stringify({ is_public: isPublic })
+    },
+    userId
+  )
+}
+
+export function getPublicStory(storyId: string) {
+  return apiFetch<PublicStoryRecord>(`/api/public/stories/${storyId}`)
+}
+
+export function getPublicStoryEvents(storyId: string) {
+  return apiFetch<PublicStoryEvent[]>(`/api/public/stories/${storyId}/events`)
 }

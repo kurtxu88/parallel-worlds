@@ -1,0 +1,36 @@
+name: 功能建议
+description: 为 Parallel Worlds 提出产品、开发体验或架构改进建议。
+title: "[Feature][中文] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: 你想解决什么问题？
+      description: 先描述你遇到的摩擦点、缺失能力或机会点。
+      placeholder: 很难把生成好的世界分享给没有创建它的人。
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 你建议的方案
+      description: 描述你想看到的改动。
+      placeholder: 增加稳定 URL 的公开只读世界页面，并展示基础元信息。
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_now
+    attributes:
+      label: 为什么现在值得做？
+      description: 说明它为什么适合当前阶段，而不是更后面再做。
+      placeholder: 这会让项目更容易 demo、转发和吸引星标。
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: 作用域与取舍
+      description: 说明你已经想到的限制、替代方案或潜在问题。
+      placeholder: 这个能力应该保持兼容 guest mode，不应依赖托管认证。
+

@@ -1,0 +1,14 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Roadmap / 路线图
+    url: https://github.com/kurtxu88/parallel-worlds/blob/main/docs/roadmap.md
+    about: Check the current product direction before proposing large scope changes. 提大方向改动前先看这里。
+  - name: Chinese Contributing Guide / 中文贡献指南
+    url: https://github.com/kurtxu88/parallel-worlds/blob/main/CONTRIBUTING.zh-CN.md
+    about: Read this first if you want to contribute in Chinese.
+  - name: Growth Playbook / 增长手册
+    url: https://github.com/kurtxu88/parallel-worlds/blob/main/docs/growth-playbook.md
+    about: See how we think about demoability, adoption, and community growth. 了解项目如何做增长与传播。
+  - name: Demo Script / Demo 脚本
+    url: https://github.com/kurtxu88/parallel-worlds/blob/main/docs/demo-script.md
+    about: Use the demo script and starter seeds when you want to record or share the project. 录视频或发帖前可以先看这里。

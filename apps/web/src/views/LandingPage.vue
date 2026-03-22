@@ -63,6 +63,7 @@
 
 <script setup lang="ts">
 import type { AppLanguage } from '../lib/api'
+import { usePageSeo } from '../lib/usePageSeo'
 
 const props = defineProps<{
   currentLang: AppLanguage
@@ -110,6 +111,18 @@ const translations = {
 } as const
 
 const t = (key: keyof typeof translations['en-US']) => translations[props.currentLang][key]
+
+usePageSeo({
+  title:
+    props.currentLang === 'en-US'
+      ? 'Parallel Worlds | Open-source AI storytelling'
+      : 'Parallel Worlds | 开源 AI 互动叙事',
+  description:
+    props.currentLang === 'en-US'
+      ? 'Build worlds, enter them, and change them from inside with an open-source stack powered by Vue, FastAPI, Neo4j, and Postgres.'
+      : '用 Vue、FastAPI、Neo4j 和 Postgres 构建世界、进入世界，并从世界内部改变它。',
+  path: '/'
+})
 </script>
 
 <style scoped>

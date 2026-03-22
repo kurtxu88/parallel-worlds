@@ -5,6 +5,8 @@ Thanks for helping build Parallel Worlds.
 ## Before You Start
 
 - Read [README.md](./README.md)
+- Read [docs/roadmap.md](./docs/roadmap.md)
+- Read [docs/growth-playbook.md](./docs/growth-playbook.md) if your change is aimed at adoption, demoability, or community growth
 - Use the open-source stack in this repo only
 - Do not reintroduce hosted auth or Supabase defaults into v1
 
@@ -28,6 +30,7 @@ Thanks for helping build Parallel Worlds.
 - Mention any schema or environment changes
 - Include test coverage when practical
 - Keep documentation in sync with behavior
+- Keep PRs focused enough to review in one sitting
 
 ## Checks
 
@@ -35,7 +38,7 @@ Before opening a PR, run:
 
 ```bash
 cd apps/web && npm install && npm run build && npm run test
-python -m compileall apps/api workers/story-generator
+python3 -m compileall apps/api workers/story-generator
 ```
 
 ## Scope Notes

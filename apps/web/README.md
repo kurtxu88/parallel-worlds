@@ -16,5 +16,13 @@ npm run test
 The frontend expects:
 
 - `VITE_API_BASE_URL`
+- `VITE_PUBLIC_SITE_URL` for canonical/OG URLs in production
 
 The open-source web app does not connect directly to Supabase, Postgres, or Neo4j.
+
+Notable routes:
+
+- `/create`
+- `/worlds`
+- `/world/:id`
+- `/share/:id`

@@ -1,0 +1,52 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0E1014"/>
+  <rect width="1200" height="630" fill="url(#paint0_radial_12_2)"/>
+  <rect width="1200" height="630" fill="url(#paint1_radial_12_2)"/>
+  <rect x="58" y="58" width="1084" height="514" rx="28" fill="rgba(255,255,255,0.04)" stroke="rgba(255,255,255,0.12)"/>
+  <path d="M105 166H433" stroke="#F4B26E" stroke-width="2" stroke-linecap="round"/>
+  <path d="M105 190H355" stroke="#F4B26E" stroke-opacity="0.4" stroke-width="2" stroke-linecap="round"/>
+  <path d="M766 128C853 83 949 104 1008 164C1067 224 1084 319 1044 394C1003 469 913 518 821 513C729 507 643 446 615 359C587 272 618 189 693 147C741 120 771 126 766 128Z" fill="url(#paint2_linear_12_2)" fill-opacity="0.16"/>
+  <circle cx="909" cy="224" r="77" fill="url(#paint3_radial_12_2)" fill-opacity="0.55"/>
+  <circle cx="889" cy="242" r="15" fill="#FFF1D6"/>
+  <path d="M821 290C859 248 911 237 960 247C1009 257 1050 290 1066 338" stroke="#F7E3B7" stroke-opacity="0.32" stroke-width="2"/>
+  <path d="M738 360C797 390 843 439 871 499" stroke="#7AD3A4" stroke-opacity="0.28" stroke-width="2"/>
+  <path d="M696 233C732 229 765 246 782 276" stroke="#8AB9FF" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="104" y="276" fill="#FFFFFF" font-family="'Georgia', serif" font-size="86" font-weight="700">
+    Parallel Worlds
+  </text>
+  <text x="106" y="340" fill="#F2F0EA" font-family="'Helvetica Neue', Arial, sans-serif" font-size="28">
+    Build worlds. Enter them. Change them from inside.
+  </text>
+  <text x="106" y="402" fill="#D0D5DD" font-family="'Helvetica Neue', Arial, sans-serif" font-size="23">
+    Open-source AI storytelling with Vue, FastAPI, Neo4j, and Postgres.
+  </text>
+  <g opacity="0.88">
+    <rect x="106" y="452" width="184" height="56" rx="28" fill="#F4B26E"/>
+    <text x="138" y="488" fill="#0E1014" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700">
+      Open source
+    </text>
+    <rect x="304" y="452" width="226" height="56" rx="28" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.16)"/>
+    <text x="339" y="488" fill="#F8FAFC" font-family="'Helvetica Neue', Arial, sans-serif" font-size="22" font-weight="700">
+      Guest mode + worker
+    </text>
+  </g>
+  <defs>
+    <radialGradient id="paint0_radial_12_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(210 94) rotate(42.717) scale(502.045 676.104)">
+      <stop stop-color="#A4521D" stop-opacity="0.26"/>
+      <stop offset="1" stop-color="#0E1014" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="paint1_radial_12_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1024 520) rotate(-136.432) scale(492.089 682.567)">
+      <stop stop-color="#0B7A52" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#0E1014" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="paint2_linear_12_2" x1="650" y1="135" x2="1030" y2="510" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7A5AF8"/>
+      <stop offset="0.5" stop-color="#8AB9FF"/>
+      <stop offset="1" stop-color="#7AD3A4"/>
+    </linearGradient>
+    <radialGradient id="paint3_radial_12_2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(909 224) rotate(90) scale(77)">
+      <stop stop-color="#FFF6DB"/>
+      <stop offset="1" stop-color="#F4B26E" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>

@@ -9,6 +9,35 @@ from psycopg.rows import dict_row
 
 DEFAULT_DATABASE_URL = "postgresql://parallel_worlds:parallel_worlds@localhost:5432/parallel_worlds"
 DATABASE_URL = os.getenv("DATABASE_URL", DEFAULT_DATABASE_URL)
+_story_schema_ready = False
+
+
+def ensure_story_schema() -> None:
+    global _story_schema_ready
+
+    if _story_schema_ready:
+        return
+
+    conn = psycopg.connect(DATABASE_URL)
+    try:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                ALTER TABLE stories
+                ADD COLUMN IF NOT EXISTS is_public BOOLEAN NOT NULL DEFAULT FALSE
+                """
+            )
+            cur.execute(
+                """
+                CREATE INDEX IF NOT EXISTS idx_stories_is_public
+                ON stories (is_public)
+                """
+            )
+        conn.commit()
+    finally:
+        conn.close()
+
+    _story_schema_ready = True
 
 
 @contextmanager
@@ -108,6 +137,7 @@ def update_settings(user_id: str, language: str | None, theme: str | None) -> di
 
 
 def list_stories(user_id: str) -> list[dict[str, Any]]:
+    ensure_story_schema()
     ensure_guest_user(user_id)
     with get_connection() as conn:
         with conn.cursor() as cur:
@@ -120,6 +150,7 @@ def list_stories(user_id: str) -> list[dict[str, Any]]:
                        s.user_input,
                        s.gender_preference,
                        s.culture_language,
+                       s.is_public,
                        s.status,
                        s.error_message,
                        s.created_at,
@@ -145,7 +176,9 @@ def create_story(
     user_input: str,
     gender_preference: str,
     culture_language: str,
+    is_public: bool,
 ) -> dict[str, Any]:
+    ensure_story_schema()
     ensure_guest_user(user_id)
     story_id = uuid.uuid4()
     with get_connection() as conn:
@@ -159,9 +192,10 @@ def create_story(
                     user_input,
                     gender_preference,
                     culture_language,
+                    is_public,
                     status
                 )
-                VALUES (%s, %s, %s, %s, %s, %s, %s)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING id,
                           story_id,
                           user_id,
@@ -169,6 +203,7 @@ def create_story(
                           user_input,
                           gender_preference,
                           culture_language,
+                          is_public,
                           status,
                           error_message,
                           created_at,
@@ -181,6 +216,7 @@ def create_story(
                     user_input,
                     gender_preference,
                     culture_language,
+                    is_public,
                     "pending",
                 ),
             )
@@ -190,6 +226,7 @@ def create_story(
 
 
 def get_story(user_id: str, story_id: str) -> dict[str, Any] | None:
+    ensure_story_schema()
     ensure_guest_user(user_id)
     with get_connection() as conn:
         with conn.cursor() as cur:
@@ -202,6 +239,7 @@ def get_story(user_id: str, story_id: str) -> dict[str, Any] | None:
                        s.user_input,
                        s.gender_preference,
                        s.culture_language,
+                       s.is_public,
                        s.status,
                        s.error_message,
                        s.created_at,
@@ -223,6 +261,7 @@ def get_story(user_id: str, story_id: str) -> dict[str, Any] | None:
 
 
 def retry_story(user_id: str, story_id: str) -> dict[str, Any] | None:
+    ensure_story_schema()
     ensure_guest_user(user_id)
     with get_connection() as conn:
         with conn.cursor() as cur:
@@ -242,6 +281,7 @@ def retry_story(user_id: str, story_id: str) -> dict[str, Any] | None:
                           user_input,
                           gender_preference,
                           culture_language,
+                          is_public,
                           status,
                           error_message,
                           created_at,
@@ -255,6 +295,7 @@ def retry_story(user_id: str, story_id: str) -> dict[str, Any] | None:
 
 
 def list_story_events(user_id: str, story_id: str) -> list[dict[str, Any]]:
+    ensure_story_schema()
     ensure_guest_user(user_id)
     with get_connection() as conn:
         with conn.cursor() as cur:
@@ -292,6 +333,7 @@ def save_story_interaction(
     user_input: str,
     ai_response: str,
 ) -> None:
+    ensure_story_schema()
     with get_connection() as conn:
         with conn.cursor() as cur:
             if user_input.strip():
@@ -358,3 +400,101 @@ def save_story_interaction(
                 (story_id, user_id),
             )
         conn.commit()
+
+
+def set_story_visibility(user_id: str, story_id: str, is_public: bool) -> dict[str, Any] | None:
+    ensure_story_schema()
+    ensure_guest_user(user_id)
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                UPDATE stories s
+                SET is_public = %s,
+                    updated_at = NOW()
+                WHERE s.id = %s
+                  AND s.user_id = %s
+                RETURNING s.id,
+                          s.story_id,
+                          s.user_id,
+                          s.story_title,
+                          s.user_input,
+                          s.gender_preference,
+                          s.culture_language,
+                          s.is_public,
+                          s.status,
+                          s.error_message,
+                          s.created_at,
+                          s.updated_at,
+                          (
+                            SELECT MAX(created_at)
+                            FROM story_events e
+                            WHERE e.story_id = s.id
+                          ) AS last_entered_at
+                """,
+                (is_public, story_id, user_id),
+            )
+            story = cur.fetchone()
+        conn.commit()
+    return story
+
+
+def get_public_story(story_id: str) -> dict[str, Any] | None:
+    ensure_story_schema()
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT s.id,
+                       s.story_id,
+                       s.story_title,
+                       s.user_input,
+                       s.gender_preference,
+                       s.culture_language,
+                       s.is_public,
+                       s.status,
+                       s.error_message,
+                       s.created_at,
+                       s.updated_at,
+                       (
+                         SELECT MAX(created_at)
+                         FROM story_events e
+                         WHERE e.story_id = s.id
+                       ) AS last_entered_at
+                FROM stories s
+                WHERE s.id = %s
+                  AND s.is_public = TRUE
+                """,
+                (story_id,),
+            )
+            story = cur.fetchone()
+        conn.commit()
+    return story
+
+
+def list_public_story_events(story_id: str) -> list[dict[str, Any]]:
+    ensure_story_schema()
+    with get_connection() as conn:
+        with conn.cursor() as cur:
+            cur.execute(
+                """
+                SELECT e.id,
+                       e.story_id,
+                       e.scene_id,
+                       e.episode_number,
+                       e.round_number,
+                       e.event_type,
+                       e.content,
+                       e.created_at
+                FROM story_events e
+                JOIN stories s
+                  ON s.id = e.story_id
+                WHERE e.story_id = %s
+                  AND s.is_public = TRUE
+                ORDER BY e.created_at ASC
+                """,
+                (story_id,),
+            )
+            events = cur.fetchall()
+        conn.commit()
+    return events

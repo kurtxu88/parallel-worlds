@@ -1,0 +1,34 @@
+name: 世界展示
+description: 分享你用 Parallel Worlds 做出来的世界、demo、文章或实验。
+title: "[Showcase][中文] "
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 你想展示什么？
+      description: 介绍一下你做出来的世界、实验或展示内容。
+      placeholder: 我做了一个会递归吞掉记忆的档案馆世界，里面有不断分叉的城市地图。
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_it_is_interesting
+    attributes:
+      label: 它为什么有意思？
+      description: 可以从叙事、技术或设计角度说明。
+      placeholder: 每次重新进入记忆档案馆，世界都会进一步不稳定。
+
+  - type: textarea
+    id: links
+    attributes:
+      label: 链接、截图或视频
+      description: 放上我们可以查看、转发或学习的素材。
+      placeholder: 图片、短视频、博客链接，或者 repo fork 地址。
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 别人能复现吗？
+      description: 如果可以，请提供种子、分支、commit 或步骤。
+      placeholder: 使用的 seed、环境说明，或任何自定义代码改动。
+

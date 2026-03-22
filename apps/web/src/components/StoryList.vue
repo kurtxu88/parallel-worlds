@@ -20,6 +20,10 @@
       {{ errorMessage }}
     </div>
 
+    <div v-if="infoMessage" class="notice info">
+      {{ infoMessage }}
+    </div>
+
     <div v-if="isLoading" class="empty-state">
       <p>{{ t('loading') }}</p>
     </div>
@@ -64,6 +68,30 @@
         <p v-if="story.error_message" class="error-copy">
           {{ story.error_message }}
         </p>
+
+        <div class="story-footer" @click.stop>
+          <span class="visibility-pill" :class="{ active: story.is_public }">
+            {{ story.is_public ? t('publicEnabled') : t('privateOnly') }}
+          </span>
+
+          <div class="share-actions">
+            <button
+              class="share-button"
+              :disabled="busyStoryId === story.id"
+              @click.stop="toggleVisibility(story)"
+            >
+              {{ story.is_public ? t('hideShare') : t('makePublic') }}
+            </button>
+            <button
+              v-if="story.is_public"
+              class="share-button"
+              :disabled="busyStoryId === story.id"
+              @click.stop="copyShareLink(story)"
+            >
+              {{ t('copyLink') }}
+            </button>
+          </div>
+        </div>
       </article>
     </div>
   </section>
@@ -71,8 +99,10 @@
 
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
-import { type AppLanguage, type StoryRecord, getStories } from '../lib/api'
+import { type AppLanguage, type StoryRecord, getStories, updateStoryVisibility } from '../lib/api'
 import { ensureGuestUser } from '../lib/guestSession'
+import { getPublicStoryUrl } from '../lib/storyLinks'
+import { usePageSeo } from '../lib/usePageSeo'
 
 const props = defineProps<{
   currentLang: AppLanguage
@@ -86,6 +116,8 @@ const emit = defineEmits<{
 const stories = ref<StoryRecord[]>([])
 const isLoading = ref(true)
 const errorMessage = ref('')
+const infoMessage = ref('')
+const busyStoryId = ref<string | null>(null)
 
 let pollIntervalId: number | null = null
 
@@ -104,6 +136,13 @@ const translations = {
     createdAt: 'Created',
     lastPlayed: 'Last played',
     neverPlayed: 'Not played yet',
+    privateOnly: 'Private',
+    publicEnabled: 'Public link on',
+    makePublic: 'Make public',
+    hideShare: 'Hide link',
+    copyLink: 'Copy share link',
+    shareCopied: 'Public share link copied.',
+    visibilityUpdated: 'Sharing updated.',
     pending: 'Queued',
     generating: 'Generating',
     completed: 'Ready',
@@ -124,6 +163,13 @@ const translations = {
     createdAt: '创建时间',
     lastPlayed: '最近游玩',
     neverPlayed: '尚未游玩',
+    privateOnly: '仅自己可见',
+    publicEnabled: '公开链接已开启',
+    makePublic: '设为公开',
+    hideShare: '关闭公开链接',
+    copyLink: '复制分享链接',
+    shareCopied: '公开分享链接已复制。',
+    visibilityUpdated: '分享设置已更新。',
     pending: '排队中',
     generating: '生成中',
     completed: '可进入',
@@ -133,6 +179,18 @@ const translations = {
 } as const
 
 const t = (key: keyof typeof translations['en-US']) => translations[props.currentLang][key]
+
+usePageSeo({
+  title:
+    props.currentLang === 'en-US'
+      ? 'Your Worlds | Parallel Worlds'
+      : '你的世界 | Parallel Worlds',
+  description:
+    props.currentLang === 'en-US'
+      ? 'Track generated worlds, check their current state, and jump back into playable story sessions.'
+      : '查看你生成过的世界、它们的当前状态，以及可继续进入的互动故事会话。',
+  path: '/worlds'
+})
 
 function formatStatus(status: StoryRecord['status']) {
   return t(status)
@@ -170,6 +228,49 @@ async function loadStories() {
           : '加载世界失败。'
   } finally {
     isLoading.value = false
+  }
+}
+
+function replaceStory(updatedStory: StoryRecord) {
+  stories.value = stories.value.map(story => (story.id === updatedStory.id ? updatedStory : story))
+}
+
+async function toggleVisibility(story: StoryRecord) {
+  busyStoryId.value = story.id
+  errorMessage.value = ''
+  infoMessage.value = ''
+
+  try {
+    const guestUserId = await ensureGuestUser()
+    const updatedStory = await updateStoryVisibility(guestUserId, story.id, !story.is_public)
+    replaceStory(updatedStory)
+    infoMessage.value = t('visibilityUpdated')
+  } catch (error) {
+    errorMessage.value =
+      error instanceof Error
+        ? error.message
+        : props.currentLang === 'en-US'
+          ? 'Failed to update sharing.'
+          : '更新分享设置失败。'
+  } finally {
+    busyStoryId.value = null
+  }
+}
+
+async function copyShareLink(story: StoryRecord) {
+  errorMessage.value = ''
+  infoMessage.value = ''
+
+  try {
+    await navigator.clipboard.writeText(getPublicStoryUrl(story.id))
+    infoMessage.value = t('shareCopied')
+  } catch (error) {
+    errorMessage.value =
+      error instanceof Error
+        ? error.message
+        : props.currentLang === 'en-US'
+          ? 'Failed to copy share link.'
+          : '复制分享链接失败。'
   }
 }
 
@@ -267,6 +368,10 @@ h1 {
   color: #b42318;
 }
 
+.notice.info {
+  color: #0f766e;
+}
+
 .empty-state {
   min-height: 260px;
   display: grid;
@@ -346,6 +451,47 @@ h1 {
   white-space: pre-wrap;
 }
 
+.story-footer {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(127, 127, 127, 0.2);
+}
+
+.visibility-pill {
+  justify-self: start;
+  padding: 6px 10px;
+  border: 1px solid rgba(127, 127, 127, 0.32);
+  font-size: 0.74rem;
+  opacity: 0.78;
+}
+
+.visibility-pill.active {
+  border-color: rgba(15, 118, 110, 0.42);
+  color: #0f766e;
+}
+
+.share-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.share-button {
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  padding: 10px 12px;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.share-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .story-meta {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -394,6 +540,14 @@ h1 {
   .primary-button,
   .secondary-button {
     flex: 1;
+  }
+
+  .share-actions {
+    flex-direction: column;
+  }
+
+  .share-button {
+    width: 100%;
   }
 }
 </style>

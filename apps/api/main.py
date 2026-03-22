@@ -9,12 +9,15 @@ from pydantic import BaseModel
 from db import (
     create_guest_user,
     create_story,
+    get_public_story,
     get_or_create_settings,
     get_story,
+    list_public_story_events,
     list_stories,
     list_story_events,
     retry_story,
     save_story_interaction,
+    set_story_visibility,
     update_settings,
 )
 from fastapi_interactive_player_v2 import (
@@ -49,6 +52,10 @@ class StoryCreateRequest(BaseModel):
 class SettingsUpdateRequest(BaseModel):
     language: Optional[str] = None
     theme: Optional[str] = None
+
+
+class StoryVisibilityRequest(BaseModel):
+    is_public: bool
 
 
 class GameInteractRequest(BaseModel):
@@ -114,6 +121,7 @@ async def write_story(
         user_input=payload.user_input.strip(),
         gender_preference=payload.gender_preference,
         culture_language=payload.culture_language,
+        is_public=payload.is_public,
     )
     return story
 
@@ -136,6 +144,19 @@ async def retry_story_generation(
     return story
 
 
+@app.patch("/api/stories/{story_id}/visibility")
+async def write_story_visibility(
+    story_id: str,
+    payload: StoryVisibilityRequest,
+    x_user_id: str | None = Header(default=None),
+):
+    user_id = require_user_id(x_user_id)
+    story = set_story_visibility(user_id, story_id, payload.is_public)
+    if not story:
+        raise HTTPException(status_code=404, detail="Story not found")
+    return story
+
+
 @app.get("/api/stories/{story_id}/events")
 async def read_story_events(
     story_id: str,
@@ -144,6 +165,22 @@ async def read_story_events(
     user_id = require_user_id(x_user_id)
     ensure_story_access(user_id, story_id)
     return list_story_events(user_id, story_id)
+
+
+@app.get("/api/public/stories/{story_id}")
+async def read_public_story(story_id: str):
+    story = get_public_story(story_id)
+    if not story:
+        raise HTTPException(status_code=404, detail="Public story not found")
+    return story
+
+
+@app.get("/api/public/stories/{story_id}/events")
+async def read_public_story_events(story_id: str):
+    story = get_public_story(story_id)
+    if not story:
+        raise HTTPException(status_code=404, detail="Public story not found")
+    return list_public_story_events(story_id)
 
 
 @app.post("/api/game/interact")

@@ -76,10 +76,24 @@ import { onMounted, ref } from 'vue'
 import Notification from './Notification.vue'
 import { type AppLanguage, type AppTheme, getSettings, updateSettings } from '../lib/api'
 import { ensureGuestUser } from '../lib/guestSession'
+import { usePageSeo } from '../lib/usePageSeo'
 
 const props = defineProps<{
   currentLang: AppLanguage
 }>()
+
+usePageSeo({
+  title:
+    props.currentLang === 'en-US'
+      ? 'Settings | Parallel Worlds'
+      : '设置 | Parallel Worlds',
+  description:
+    props.currentLang === 'en-US'
+      ? 'Adjust language and theme preferences for the guest-mode open-source experience.'
+      : '调整访客模式开源体验中的语言和主题偏好。',
+  path: '/settings',
+  noindex: true
+})
 
 const emit = defineEmits<{
   (e: 'language-change', language: AppLanguage): void

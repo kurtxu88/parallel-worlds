@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS stories (
   user_input TEXT NOT NULL,
   gender_preference TEXT NOT NULL DEFAULT 'male',
   culture_language TEXT NOT NULL DEFAULT 'en-US',
+  is_public BOOLEAN NOT NULL DEFAULT FALSE,
   status TEXT NOT NULL DEFAULT 'pending',
   error_message TEXT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
@@ -47,6 +48,7 @@ CREATE TABLE IF NOT EXISTS story_events (
 );
 
 CREATE INDEX IF NOT EXISTS idx_stories_user_id ON stories(user_id);
+CREATE INDEX IF NOT EXISTS idx_stories_is_public ON stories(is_public);
 CREATE INDEX IF NOT EXISTS idx_stories_status ON stories(status);
 CREATE INDEX IF NOT EXISTS idx_stories_created_at ON stories(created_at DESC);
 CREATE INDEX IF NOT EXISTS idx_story_events_story_id ON story_events(story_id);

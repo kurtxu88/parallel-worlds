@@ -1,7 +1,8 @@
 {
-  "name": "Parallel Worlds - Interactive AI Storytelling",
+  "name": "Parallel Worlds - Open-source AI Storytelling",
   "short_name": "Parallel Worlds",
-  "description": "Create and explore infinite interactive stories with AI",
+  "id": "/?v=0.1.0",
+  "description": "Build worlds, enter them, and change them from inside.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -18,4 +19,4 @@
   "categories": ["entertainment", "games", "books"],
   "lang": "en-US",
   "dir": "ltr"
-} 
+}

@@ -1,0 +1,34 @@
+name: World showcase
+description: Share a world, demo, write-up, or experiment built with Parallel Worlds.
+title: "[Showcase] "
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What are you sharing?
+      description: Tell us about the world, demo, or experiment.
+      placeholder: I built a noir archive world with recursive memory loss and a branching city map.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_it_is_interesting
+    attributes:
+      label: Why is it interesting?
+      description: Highlight the narrative, technical, or design angle.
+      placeholder: The world becomes more unstable each time the player revisits a memory archive.
+
+  - type: textarea
+    id: links
+    attributes:
+      label: Links, screenshots, or clips
+      description: Add anything we can feature or learn from.
+      placeholder: Links to images, short clips, a blog post, or a repo fork.
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Can others reproduce it?
+      description: Share the seed, branch, commit, or steps if possible.
+      placeholder: Seed used, setup notes, or any custom code changes.
+

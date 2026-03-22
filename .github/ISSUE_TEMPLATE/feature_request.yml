@@ -1,0 +1,35 @@
+name: Feature request
+description: Propose a product, DX, or architecture improvement for Parallel Worlds.
+title: "[Feature] "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem are you trying to solve?
+      description: Start with the friction or missing capability.
+      placeholder: It is hard to share generated worlds with someone who did not create them.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Describe the change you want to see.
+      placeholder: Add public read-only world pages with stable URLs and minimal metadata.
+    validations:
+      required: true
+
+  - type: textarea
+    id: why_now
+    attributes:
+      label: Why now?
+      description: Help us understand why this matters in the current phase of the roadmap.
+      placeholder: This would make the project easier to demo and more likely to be shared.
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and tradeoffs
+      description: Mention any constraints, alternatives, or concerns you already see.
+      placeholder: This should stay compatible with guest mode and should not require hosted auth.

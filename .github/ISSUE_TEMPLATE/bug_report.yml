@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a reproducible problem in the current open-source flow.
+title: "[Bug] "
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the bug and the impact on your workflow.
+      placeholder: Creating a world stays in pending forever after the worker starts.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Include the exact sequence needed to hit the bug.
+      placeholder: |
+        1. Copy .env.example to .env
+        2. Run docker compose up --build
+        3. Create a world with the default example seed
+        4. Observe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect instead?
+      placeholder: The story should move from pending to completed and become playable.
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Tell us what stack you are using.
+      placeholder: |
+        OS:
+        Browser:
+        Node version:
+        Python version:
+        Docker version:
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Paste relevant logs, tracebacks, or screenshots if you have them.
+      render: shell

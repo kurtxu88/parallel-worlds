@@ -1,0 +1,67 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+template: |
+  ## What changed
+
+  $CHANGES
+
+  ## Upgrade notes
+
+  - review the README for environment expectations
+  - review docs changes if this release modifies setup, scope, or behavior
+
+categories:
+  - title: 'Features'
+    labels:
+      - feature
+      - enhancement
+  - title: 'Fixes'
+    labels:
+      - bug
+      - fix
+  - title: 'Docs'
+    labels:
+      - docs
+  - title: 'Infrastructure'
+    labels:
+      - chore
+      - ci
+      - infra
+
+change-template: '- $TITLE (#$NUMBER)'
+change-title-escapes: '\<*_&'
+
+version-resolver:
+  major:
+    labels:
+      - major
+  minor:
+    labels:
+      - feature
+      - enhancement
+  patch:
+    labels:
+      - bug
+      - fix
+      - docs
+      - chore
+      - ci
+      - infra
+  default: patch
+
+exclude-labels:
+  - skip-changelog
+
+autolabeler:
+  - label: docs
+    files:
+      - '*.md'
+      - 'docs/**'
+  - label: ci
+    files:
+      - '.github/**'
+  - label: feature
+    files:
+      - 'apps/web/src/**'
+      - 'apps/api/**'
+      - 'workers/story-generator/**'

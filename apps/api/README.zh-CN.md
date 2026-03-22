@@ -1,8 +1,8 @@
 # API
 
-`apps/api` contains the FastAPI service for Parallel Worlds.
+`apps/api` 是 Parallel Worlds 的 FastAPI 服务。
 
-## Main Endpoints
+## 主要接口
 
 - `POST /api/session/guest`
 - `GET /api/stories`
@@ -18,7 +18,7 @@
 - `POST /api/game/interact`
 - `GET /api/health`
 
-## Run Locally
+## 本地运行
 
 ```bash
 python3 -m venv .venv

@@ -1,0 +1,55 @@
+name: Bug 报告
+description: 报告当前开源流程中一个可复现的问题。
+title: "[Bug][中文] "
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: 发生了什么？
+      description: 请描述 bug 本身，以及它对你的使用或开发流程造成了什么影响。
+      placeholder: worker 启动后，世界一直停留在 pending，没有继续生成。
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      description: 请尽量写出能稳定复现的具体步骤。
+      placeholder: |
+        1. 把 .env.example 复制成 .env
+        2. 运行 docker compose up --build
+        3. 用默认示例种子创建一个世界
+        4. 观察结果……
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: 你原本期待什么结果？
+      placeholder: 故事应该从 pending 进入 completed，并且可以开始游玩。
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: 你的环境
+      description: 请说明你使用的系统和工具链。
+      placeholder: |
+        操作系统：
+        浏览器：
+        Node 版本：
+        Python 版本：
+        Docker 版本：
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志或截图
+      description: 如果有相关日志、报错、traceback 或截图，请贴在这里。
+      render: shell
+

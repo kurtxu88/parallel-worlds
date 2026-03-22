@@ -12,3 +12,5 @@ dist/
 .venv/
 generated_games/
 coverage/
+.npm-cache/
+out/
