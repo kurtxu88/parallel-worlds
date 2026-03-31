@@ -15,7 +15,7 @@
     "@unhead/vue": "^2.0.12",
     "@vueuse/head": "^2.0.0",
     "foundation-sites": "^6.9.0",
-    "vue": "^3.5.17",
+    "vue": "^3.5.30",
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
